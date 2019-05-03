@@ -1,0 +1,42 @@
+NAME="gegl0.4"
+VERSION=0.4.14
+RELEASE=1
+CATEGORY="Libs"
+SUMMARY="Generic Graphics Library"
+DESCRIPTION="GEGL (Generic Graphics Library) is a graph based image processing
+framework.  GEGL provides infrastructure to do demand based cached
+non-destructive image editing on larger than RAM buffers."
+HOMEPAGE="http://www.gegl.org/"
+SRC_URI="http://download.gimp.org/pub/gegl/${VERSION%.*}/gegl-${VERSION}.tar.bz2"
+SRC_DIR="gegl-${VERSION}"
+
+PKG_NAMES="gegl0.4 libgegl0.4_0 libgegl0.4-devel girepository-Gegl0.4 vala-gegl0.4"
+gegl0_4_CATEGORY="Graphics"
+gegl0_4_CONTENTS="usr/bin/*-0.4.exe"
+libgegl0_4_0_SUMMARY="${SUMMARY} (runtime)"
+libgegl0_4_0_REQUIRES="dcraw" # raw-load, rawbayer-load
+libgegl0_4_0_CONTENTS="
+	usr/bin/cyggegl-0.4-0.dll
+	usr/bin/cyggegl-*-0.4.dll
+	usr/lib/gegl-0.4/
+	usr/share/doc/${NAME}
+	usr/share/locale/*/*/gegl-0.4.mo
+"
+libgegl0_4_devel_SUMMARY="${SUMMARY} (development)"
+libgegl0_4_devel_CONTENTS="
+	usr/include/gegl-0.4/
+	usr/lib/libgegl*-0.4.dll.a
+	usr/lib/pkgconfig/gegl*-0.4.pc
+"
+girepository_Gegl0_4_SUMMARY="${SUMMARY} (GObject Introspection)"
+girepository_Gegl0_4_CONTENTS="usr/*/gir*/Gegl-0.4.*"
+vala_gegl0_4_SUMMARY="${SUMMARY} (Vala bindings)"
+vala_gegl0_4_CONTENTS="usr/share/vala/vapi/gegl-0.4.*"
+PKG_IGNORE="usr/share/gtk-doc/html/gegl/"
+
+CYGCONF_ARGS="
+	--program-suffix=-0.4
+	--enable-workshop
+	--without-libavformat
+	--without-libv4l
+"
